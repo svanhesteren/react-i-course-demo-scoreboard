@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import Board from './containers/Board'
 import './App.css'
 
+// export const players = [
+//   { id: 1, name: 'Sebastian', score: 100 },
+//   { id: 2, name: 'The rest', score: -100}
+// ]
 export const players = [
   { id: 1, name: 'Arno', score: 4 },
   { id: 2, name: 'Mat', score: 6 },
@@ -16,10 +20,9 @@ class App extends Component {
 
   updatePlayer = (playerId, updates) => {
     this.setState({
-      players: this.state.players.map((player) => {
+      players: this.state.players.map( (player) => {
         if (player.id !== playerId) return player
-        return { ...player, ...updates }
-      })
+        return { ...player, ...updates } } )
     })
   }
 
