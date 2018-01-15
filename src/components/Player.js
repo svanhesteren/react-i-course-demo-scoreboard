@@ -4,6 +4,10 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import PlusOneButton from './PlusOneButton'
 import './Player.css'
+import { connect } from 'react-redux'
+import  update  from '../actions/players'
+// import { connect } from 'react-redux'
+// import addToScore from '../actions/players'
 
 export const playerShape = PropTypes.shape({
   id: PropTypes.number.isRequired,
@@ -11,15 +15,16 @@ export const playerShape = PropTypes.shape({
   score: PropTypes.number.isRequired
 })
 
-export default class Player extends PureComponent {
+class Player extends PureComponent {
   static propTypes = {
     ...playerShape.isRequired,
     onChange: PropTypes.func.isRequired
   }
 
   increasePlayerScore = () => {
-    const { id, score, onChange } = this.props
-    onChange(id, { score: score + 1 })
+    const { id } = this.props
+    this.props.update(id)
+    // onChange(id, { score: score + 1 })
   }
 
   render() {
@@ -34,3 +39,6 @@ export default class Player extends PureComponent {
     )
   }
 }
+const mapDispatchToProps = { update }
+
+export default connect(null, mapDispatchToProps)(Player)
